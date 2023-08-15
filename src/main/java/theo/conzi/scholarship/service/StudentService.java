@@ -33,13 +33,13 @@ public class StudentService {
     }
 
     public StudentResponseDTO createStudent(StudentRequestDTO requestDTO) {
-        ClassEntity classEntity = validateIdClass(requestDTO);
+        ClassEntity classEntity = validateIdClass(requestDTO.getIdClass());
         StudentEntity student = builder.buildEntity(requestDTO, classEntity);
         return builder.buildResponseDTO(repository.save(student));
     }
 
-    private ClassEntity validateIdClass(StudentRequestDTO requestDTO) {
-        return classRepository.findById(requestDTO.getIdClass())
+    private ClassEntity validateIdClass(Long idClass) {
+        return classRepository.findById(idClass)
                 .orElseThrow(() -> new EntityNotFoundException("user not found"));
     }
 
