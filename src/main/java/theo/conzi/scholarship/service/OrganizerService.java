@@ -30,7 +30,7 @@ public class OrganizerService {
 
     public OrganizerResponseDTO getOrganizerById(Long id) {
         OrganizerEntity organizer = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("user not found"));
+                .orElseThrow(() -> new EntityNotFoundException("organizer not found"));
         return builder.buildResponseDTO(organizer);
     }
 
@@ -48,7 +48,7 @@ public class OrganizerService {
 
     private ClassEntity validateIdClass(Long idClass) {
         return classRepository.findById(idClass)
-                .orElseThrow(() -> new EntityNotFoundException("user not found"));
+                .orElseThrow(() -> new EntityNotFoundException("class not found"));
     }
 
     public void deleteOrganizer(Long id) {

@@ -28,7 +28,7 @@ public class StudentService {
 
     public StudentResponseDTO getStudentById(Long id) {
         StudentEntity student = repository.findById(id)
-                .orElseThrow(() -> new EntityNotFoundException("user not found"));
+                .orElseThrow(() -> new EntityNotFoundException("student not found"));
         return builder.buildResponseDTO(student);
     }
 
@@ -40,7 +40,7 @@ public class StudentService {
 
     private ClassEntity validateIdClass(Long idClass) {
         return classRepository.findById(idClass)
-                .orElseThrow(() -> new EntityNotFoundException("user not found"));
+                .orElseThrow(() -> new EntityNotFoundException("class not found"));
     }
 
     public void deleteStudent(Long id) {
