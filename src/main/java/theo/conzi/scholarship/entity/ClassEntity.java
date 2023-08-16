@@ -28,11 +28,7 @@ public class ClassEntity {
     private List<SquadEntity> squads;
 
 
-    @ManyToMany
-    @JoinTable(name = "organizer_class", joinColumns = {
-            @JoinColumn(name = "id_class")}, inverseJoinColumns = {
-            @JoinColumn(name = "id_organizer")
-    })
+    @ManyToMany(mappedBy = "classes")
     private List<OrganizerEntity> organizers;
 
 }

@@ -20,7 +20,11 @@ public class OrganizerEntity {
     private String name;
     private String type;
 
-    @ManyToMany(mappedBy = "organizers")
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH})
+    @JoinTable(name = "organizer_class", joinColumns = {
+            @JoinColumn(name = "id_organizer")}, inverseJoinColumns = {
+            @JoinColumn(name = "id_class")
+    })
     private List<ClassEntity> classes;
 
 }

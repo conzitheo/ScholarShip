@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import theo.conzi.scholarship.dto.OrganizerRequestDTO;
 import theo.conzi.scholarship.dto.OrganizerResponseDTO;
+import theo.conzi.scholarship.dto.OrganizerUpdateDTO;
 import theo.conzi.scholarship.service.OrganizerService;
 
 import java.util.List;
@@ -40,4 +41,8 @@ public class OrganizerController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> registerOrganizerInClass(@PathVariable Long id, @Valid @RequestBody OrganizerUpdateDTO updateDTO) {
+        return new ResponseEntity<>(service.registerOrganizerInClass(id, updateDTO), HttpStatus.OK);
+    }
 }

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import theo.conzi.scholarship.builder.OrganizerBuilder;
 import theo.conzi.scholarship.dto.OrganizerRequestDTO;
 import theo.conzi.scholarship.dto.OrganizerResponseDTO;
+import theo.conzi.scholarship.dto.OrganizerUpdateDTO;
 import theo.conzi.scholarship.entity.ClassEntity;
 import theo.conzi.scholarship.entity.OrganizerEntity;
 import theo.conzi.scholarship.enums.TypeEnum;
@@ -55,8 +56,17 @@ public class OrganizerService {
         getOrganizerById(id);
         repository.deleteById(id);
     }
+
+    public OrganizerResponseDTO registerOrganizerInClass(Long id, OrganizerUpdateDTO updateDTO) {
+        OrganizerEntity organizer = validateIdOrganizer(id);
+        ClassEntity classEntity = validateIdClass(updateDTO.getIdClass());
+        organizer.getClasses().add(classEntity);
+        return builder.buildResponseDTO(repository.save(organizer));
+    }
+
+    private OrganizerEntity validateIdOrganizer(Long id) {
+        return repository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("organizer not found"));
+    }
+
 }
-
-
-
-
