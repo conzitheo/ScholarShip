@@ -4,6 +4,7 @@ import jakarta.persistence.EntityNotFoundException;
 import jakarta.validation.ValidationException;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.util.CollectionUtils;
 import theo.conzi.scholarship.builder.StudentBuilder;
 import theo.conzi.scholarship.dto.StudentRequestDTO;
 import theo.conzi.scholarship.dto.StudentResponseDTO;
@@ -47,6 +48,12 @@ public class StudentService {
         if (!StatusEnum.WAITING.name().equalsIgnoreCase(classEntity.getStatus())) {
             throw new ValidationException("You can only register new students in the status: WAITING");
         }
+
+        List<StudentEntity> students = classEntity.getStudents();
+        if (!CollectionUtils.isEmpty(students) && students.size() > 30) {
+            throw new ValidationException("Class must have a maximum of 30 students");
+        }
+
         return classEntity;
     }
 
