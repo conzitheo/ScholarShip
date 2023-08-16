@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import theo.conzi.scholarship.dto.StudentRequestDTO;
 import theo.conzi.scholarship.dto.StudentResponseDTO;
+import theo.conzi.scholarship.dto.StudentUpdateDTO;
 import theo.conzi.scholarship.service.StudentService;
 
 import java.util.List;
@@ -37,6 +38,11 @@ public class StudentController {
     public ResponseEntity<?> deleteStudent(@PathVariable Long id) {
         service.deleteStudent(id);
         return new ResponseEntity<>(HttpStatus.OK);
+    }
+
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<?> registerStudentInSquad(@PathVariable Long id, @Valid @RequestBody StudentUpdateDTO updateDTO) {
+        return new ResponseEntity<>(service.registerStudentInSquad(id, updateDTO), HttpStatus.OK);
     }
 
 }
