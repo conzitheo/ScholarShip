@@ -7,6 +7,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import theo.conzi.scholarship.dto.ClassRequestDTO;
 import theo.conzi.scholarship.dto.ClassResponseDTO;
+import theo.conzi.scholarship.dto.ClassUpdateDTO;
 import theo.conzi.scholarship.service.ClassService;
 
 import java.util.List;
@@ -39,6 +40,11 @@ public class ClassController {
         return new ResponseEntity<>(HttpStatus.OK);
     }
 
+    @PutMapping(path = "/{id}")
+    public ResponseEntity<ClassResponseDTO> updateStatus(@PathVariable Long id,
+                                                         @Valid @RequestBody ClassUpdateDTO classUpdateDTO) {
+        return new ResponseEntity<>(service.updateStatus(classUpdateDTO, id), HttpStatus.OK);
+    }
 }
 
 
