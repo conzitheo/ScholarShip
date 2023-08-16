@@ -21,7 +21,7 @@ public class ClassService {
 
 
     public List<ClassResponseDTO> getAllClasses() {
-        return builder.buildListResponseDTO(repository.findAll());
+        return builder.buildListResponseDTO(repository.listClass());
     }
 
     public ClassResponseDTO getClassById(Long id) {

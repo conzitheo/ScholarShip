@@ -2,6 +2,8 @@ package theo.conzi.scholarship.dto;
 
 import lombok.*;
 
+import java.util.List;
+
 @Getter
 @Setter
 @Builder
@@ -13,4 +15,6 @@ public class ClassResponseDTO {
     private String name;
     private String status;
     private String duration;
+    private List<StudentResponseDTO> students;
+    private List<OrganizerResponseDTO> organizers;
 }
